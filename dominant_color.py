@@ -26,10 +26,13 @@ def dominant_color(image):
 
     print("cluster centres:\n", codes)
 
-    vecs, dist = scipy.cluster.vq.vq(array, codes)  # assign codes
-    counts, bins = np.histogram(vecs, len(codes))  # count occurrences
+    # assign codes
+    vecs, dist = scipy.cluster.vq.vq(array, codes)
+    # count occurances
+    counts, bins = np.histogram(vecs, len(codes))
 
-    index_max = np.argmax(counts)  # find most frequent
+    # find most frequent
+    index_max = np.argmax(counts)
     peak = codes[index_max]
     colour = binascii.hexlify(bytearray(int(c) for c in peak)).decode("ascii")
     print("most frequent is %s (#%s)" % (peak, colour))
